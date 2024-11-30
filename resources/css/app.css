@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&family=Merienda:wght@300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url(/vendor/yungifez/artisan-ui/dist/artisan.css);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.men {
+     font-size: 100px;
+}
+@layer base {
+    /* For WebKit browsers (Chrome, Edge, Safari) */
+    ::-webkit-scrollbar {
+      width: 4px; /* Width of vertical scrollbar */
+      height: 5px; /* Height of horizontal scrollbar */
+    }
+
+
+
+    ::-webkit-scrollbar-track {
+      background: red; /* Background color of the scrollbar track */
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: red; /* Color of the scrollbar thumb */
+      border-radius: 5px; /* Rounded corners for the thumb */
+      border: 2px solid #f3f4f6; /* Creates space around the thumb */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: blue; /* Darker thumb color on hover */
+    }
+
+    /* For Firefox */
+    * {
+      scrollbar-width: thin; /* Makes the scrollbar thinner */
+      scrollbar-color: red; /* Thumb color and track color */
+    }
+
+
+
+    .flex-grow-content {
+        overflow-y: scroll; /* Ensure the div is scrollable */
+    }
+
+    .flex-grow-content::-webkit-scrollbar {
+        display: none; /* Hide the scrollbar */
+    }
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    .flex-grow-content {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+  }
+
+
+pre {
+    font-family: 'Courier New', Courier, monospace; /* Fixed-width font */
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 10px; /* Spacing around the text */
+    border: 1px solid #ccc; /* Border around the preformatted text */
+    overflow: auto; /* Allows scrolling if content overflows */
+}
+
+code {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.875rem;
+  flex-wrap: wrap;
+  color: #d4d4d4; /* VS Code text */
+}
+
+
+
+code span.token.string {
+  color: #a31515;
+}
+
+code span.token.keyword {
+  color: #0000ff; /* Blue keywords */
+}
+.h4 {
+    font-size: 100px;
+}
+
+code span.token.function {
+  color: #00698f; /* Blue functions */
+}
+
+
+.content-container h4 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    color: #333;
+}
+
+.content-container p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.content-container ul, .content-container ol {
+    margin-left: 1.5rem;
+    color: #555;
+}
