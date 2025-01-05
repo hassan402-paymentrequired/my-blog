@@ -7,7 +7,7 @@
             <small class="text-xs italic text-red-500">{{ $message }}</small>
         @enderror
         <select class="w-full p-2 border border-gray-300 rounded" wire:model.change='tag'>
-            <option value="--"  selected>tag</option>
+            <option value="--" selected>tag</option>
             <option value="General">General</option>
             <option value="Programming">Programming</option>
             <option value="my career">my career</option>
@@ -46,8 +46,8 @@
             <trix-editor input="x"></trix-editor>
         </main>
         @error('body')
-        <small class="text-xs italic text-red-500">{{ $message }}</small>
-    @enderror
+            <small class="text-xs italic text-red-500">{{ $message }}</small>
+        @enderror
         <x-aui::button>Create</x-aui::button>
     </form>
     </>

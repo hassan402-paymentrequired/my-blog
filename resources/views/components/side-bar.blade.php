@@ -3,18 +3,18 @@
         <div class="flex flex-col gap-3">
             <div class="w-16 h-16 rounded-full">
                 <img
-                    src="https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg"
+                    src="{{ asset('images/avatar.jpeg') }}"
                     alt="my image"
                     class="object-cover w-full h-full rounded-full"
                 />
             </div>
 
             <div class="flex flex-col gap-y-3">
-                <p class="w-full text-xs max-w-[150px]  tracking-wider">
-                    Hello! I'm Hassan, and this is my blog where i share
+                <p class="w-full text-xs max-w-[150px] font-robo tracking-wider">
+                    Hey there! I'm Hassan, and this is my blog where i share
                     my thoughts and experiences through writing.
                     <span class="font-bold text-green-600 ">
-                        Learn more <a href="#">about me here</a>
+                        Learn more <a href="#" class="underline">about me here</a>
                     </span>
                 </p>
 
@@ -42,9 +42,9 @@
                      </x-link>
                 </li>
                  <li>
-                     <x-link :is_active="false" link="/create-blog-post" class="text-base font-semibold ">
+                     {{-- <x-link :is_active="false" link="/create-blog-post" class="text-base font-semibold ">
                         create post
-                     </x-link>
+                     </x-link> --}}
                 </li>
                {{--  <li>
                     <NavLink active={false} href="#" class="text-base font-semibold ">

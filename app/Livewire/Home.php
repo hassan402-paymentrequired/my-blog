@@ -13,7 +13,8 @@ class Home extends Component
 
     public function mount()
     {
-        $this->blogposts = BlogPost::all();
+      $this->blogposts = BlogPost::latest()->get();
+
     }
 
     #[On('post-created')]

@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Connect extends Component
 {
-    #[Validate(['required','min:5'])]
+    #[Validate(['required', 'min:5'])]
     public $name = '';
 
     #[Validate('required')]
@@ -25,9 +25,8 @@ class Connect extends Component
     public function send()
     {
         Mail::to('lateefoluwafemi@gmail.com')->queue(new ConnectionMail($this->name, $this->email, $this->content));
-        session()->flash('success', 'Your message has been sent successfully.');
+        session()->flash('success', 'Thank for reaching out to me 🥹.');
 
         return redirect()->route('home');
-
     }
 }

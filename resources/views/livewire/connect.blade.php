@@ -1,7 +1,7 @@
 <div >
 <div class="flex flex-col items-center justify-center h-screen overflow-hidden overflow-y-auto sm:flex-row">
     <div class="flex ">
-        <img src="/storage/images/d.gif" alt="" width="400" />
+        <img src="/images/connection.png" alt="" width="250" />
     </div>
     <form class='p-5' wire:submit='send'>
         <div class="flex flex-col space-y-2">
@@ -13,7 +13,7 @@
                 you. 🚀✨</p>
         </div>
 
-        <div class="flex flex-col space-y-3">
+        <div class="flex flex-col space-y-3 mt-4">
             <x-text-input placeholder='John doe' required wire:model.blur='name' />
             @error('name') <span class="error">{{ $message }}</span> @enderror
             <x-text-input type='email' placeholder='example@gmail.com' required wire:model='email' />
@@ -21,7 +21,8 @@
             <textarea name="" placeholder="What's the issue" wire:model='content' class=' w-full rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  outline-none resize-none' rows={4} value={data.reason}></textarea>
         </div>
 
-        <button class='mt-5'>Connnect
+        <button class='mt-5'>
+            Connnect
             <span wire:loading>...</span>
         </button>
     </form>

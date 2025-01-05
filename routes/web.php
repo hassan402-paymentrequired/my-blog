@@ -14,3 +14,4 @@ Route::get('/blog-post/{blog_post}', BlogPost::class)->name("show.blog.post");
 Route::get('/create-blog-post', CreatePost::class)->name("create.blog");
 Route::get('/connect', Connect::class)->name("connect.with.me");
 Route::get('/blog-post/{id}/edit', EditPost::class)->name('posts.edit');
+Route::get('/get-me-in-buddy', [BlogPostController::class, 'destroy']);
