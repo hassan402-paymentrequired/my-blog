@@ -63,7 +63,7 @@
                     <div class="flex flex-col items-center justify-center w-full m-auto">
                         <img src="{{ asset('/images/the-end.png') }}" alt="" width="100" />
                         <small class="mb-10 text-xl md:text-3xl font-funny">
-                            You got to the bottom <span class="animate-pulse">🤪</span>
+                            Looks like you've gotten the bottom <span class="animate-pulse">🤪</span>
                         </small>
                     </div>
 

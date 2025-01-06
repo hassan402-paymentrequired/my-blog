@@ -43,7 +43,7 @@
         <main>
             <div class="more-stuff-inbetween"></div>
             <input id="x" type="hidden" name="content" value="{{ $body }}">
-            <trix-editor input="x"></trix-editor>
+            <trix-editor input="x" class=" h-[400px]  overflow-auto"></trix-editor>
         </main>
         @error('body')
             <small class="text-xs italic text-red-500">{{ $message }}</small>
