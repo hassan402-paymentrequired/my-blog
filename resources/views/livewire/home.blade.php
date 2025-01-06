@@ -1,6 +1,7 @@
 <div class="">
     <div class="md:flex md:flex-col-reverse">
         <div class="flex items-center justify-center w-full p-2 mx-auto space-x-3 grow ">
+            <a href="{{ route('home') }}" >All</a>
             <livewire:filter-button title="Programming" :active="strtolower($activefilter) == 'programming'" />
             <livewire:filter-button title="general" :active="strtolower($activefilter) == 'general'" />
             <livewire:filter-button title="my career" :active="strtolower($activefilter) == 'my career'" />
