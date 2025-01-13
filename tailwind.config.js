@@ -14,8 +14,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Bebas Neue', ...defaultTheme.fontFamily.sans],
-                funny: [ "Merienda", "cursive"],
-                funny2: ['Amatic SC'],
+                funny: [ "Josefin Sans", "cursive"],
+                funny2: ['Josefin Sans'],
                 robo: ["Roboto"]
             },
         },

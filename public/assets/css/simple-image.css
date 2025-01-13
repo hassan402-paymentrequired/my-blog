@@ -1,0 +1,92 @@
+.simple-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.simple-image img {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.simple-image input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.title{
+    font-size: 50px;
+    font-weight: 600;
+}
+#editorjs{
+    width: 100%;
+}
+
+#editorjs .codex-editor h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #222; /* Darker gray for better contrast */
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+#editorjs .codex-editor h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #444; /* Slightly lighter than h1 */
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+#editorjs .codex-editor p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+#editorjs .codex-editor input {
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 8px 10px;
+    width: calc(100% - 22px);
+    margin-bottom: 10px;
+}
+
+
+#editorjs .codex-editor img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#editorjs .codex-editor .simple-image-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #111; /* Stronger contrast for titles */
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#editorjs .codex-editor .simple-image {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#editorjs .codex-editor .simple-image input {
+    display: block;
+    margin: 10px auto 0;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+

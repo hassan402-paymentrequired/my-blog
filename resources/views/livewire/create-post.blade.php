@@ -1,76 +1,145 @@
-<div x-data="articleForm()">
+<div x-data="">
     <h1 class="my-5 text-4xl font-medium text-center">Create Article</h1>
-
-    <form wire:submit='store' class="w-full h-full max-w-3xl p-5 m-auto space-y-3">
-        <input wire:model.blur='title' type="text" class="w-full p-2 text-sm border rounded" placeholder="title" />
+    <form wire:submit.prevent='store' class="w-full h-full max-w-3xl p-5 m-auto space-y-3">
+        <input wire:model.defer='title' type="text" class="w-full p-2 text-sm border rounded" placeholder="Title" />
         @error('title')
             <small class="text-xs italic text-red-500">{{ $message }}</small>
         @enderror
-        <select class="w-full p-2 border border-gray-300 rounded" wire:model.change='tag'>
-            <option value="--" selected>tag</option>
+
+        <select class="w-full p-2 border border-gray-300 rounded" wire:model.defer='tag'>
+            <option value="--" selected>Tag</option>
             <option value="General">General</option>
             <option value="Programming">Programming</option>
-            <option value="my career">my career</option>
+            <option value="My Career">My Career</option>
         </select>
         @error('tag')
             <small class="text-xs italic text-red-500">{{ $message }}</small>
         @enderror
 
-        <label for="uploadFile1"
-            class="flex flex-col items-center justify-center object-contain w-full mx-auto overflow-hidden text-base font-semibold text-gray-500 bg-white border-2 border-gray-300 border-dashed rounded cursor-pointer h-52">
-            <template @click="$refs.img.click()" x-if="!obj">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-2 w-11 fill-gray-500" viewBox="0 0 32 32">
-                        <path
-                            d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z" />
-                        <path
-                            d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z" />
-                    </svg>
-                    Upload file
-                    <input type="file" id="uploadFile1" class="hidden" x-ref="img" wire:model='image' />
-                    <p class="mt-2 text-xs font-medium text-gray-400">
-                        PNG, JPG, SVG, WEBP, and GIF are Allowed.
-                    </p>
-                </div>
-            </template>
-
-
-            @if ($image)
-                <img src="{{ $image->temporaryUrl() }}">
-            @endif
+        <label for="uploadFile1" class="...">
+            <input type="file" id="uploadFile1" class="hidden" x-ref="img" wire:model='image' />
+            <p class="mt-2 text-xs font-medium text-gray-400">
+                PNG, JPG, SVG, WEBP, and GIF are Allowed.
+            </p>
         </label>
 
-        <main>
-            <div class="more-stuff-inbetween"></div>
-            <input id="x" type="hidden" name="content" value="{{ $body }}">
-            <trix-editor input="x" class=" h-[400px]  overflow-auto"></trix-editor>
-        </main>
-        @error('body')
-            <small class="text-xs italic text-red-500">{{ $message }}</small>
-        @enderror
+        @if ($image)
+            <img src="{{ $image->temporaryUrl() }}">
+        @endif
+
+        <div id="editorjs"></div>
         <x-aui::button>Create</x-aui::button>
     </form>
+
     </>
 
 
     <script>
-        const Editor = document.getElementById('x')
+        class SimpleImage {
+            constructor({
+                data
+            }) {
+                this.data = data || {};
+                this.wrapper = undefined;
+            }
 
-        addEventListener("trix-blur", e => {
-            @this.set('body', Editor.getAttribute('value'))
-        })
+            static get toolbox() {
+                return {
+                    title: 'Image',
+                    icon: '<svg width="17" height="15" viewBox="0 0 336 276" xmlns="http://www.w3.org/2000/svg"><path d="M291 150V79c0-19-15-34-34-34H79c-19 0-34 15-34 34v42l67-44 81 72 56-29 42 30zm0 52l-43-30-56 30-81-67-66 39v23c0 19 15 34 34 34h178c17 0 31-13 34-29zM79 0h178c44 0 79 35 79 79v118c0 44-35 79-79 79H79c-44 0-79-35-79-79V79C0 35 35 0 79 0z"/></svg>'
+                };
+            }
 
-        function articleForm() {
-            return {
-                obj: null,
-                handleImageUpload(event) {
-                    const file = event.target.files[0];
-                    if (file) {
-                        const url = URL.createObjectURL(file);
-                        {{--  document.getElementById('image').src = url;  --}}
+            render() {
+                this.wrapper = document.createElement('div');
+                this.wrapper.classList.add('simple-image');
 
-                    }
+                if (this.data.url) {
+                    this._createImage(this.data.url, this.data.caption);
+                } else {
+                    const input = document.createElement('input');
+                    input.placeholder = 'Paste an image URL...';
+
+                    input.addEventListener('paste', (event) => {
+                        const url = event.clipboardData?.getData('text') || '';
+                        if (url) {
+                            this._createImage(url);
+                        }
+                    });
+
+                    this.wrapper.appendChild(input);
+                }
+
+                return this.wrapper;
+            }
+
+            _createImage(url, caption = '') {
+                const image = document.createElement('img');
+                const captionInput = document.createElement('input');
+
+                image.src = url;
+                captionInput.placeholder = 'Caption...';
+                captionInput.value = caption;
+
+                this.wrapper.innerHTML = '';
+                this.wrapper.appendChild(image);
+                this.wrapper.appendChild(captionInput);
+            }
+
+            save(blockContent) {
+                const title = blockContent.querySelector('.simple-image-title');
+                const image = blockContent.querySelector('img');
+                const caption = blockContent.querySelector('input');
+
+                return {
+                    title: title?.innerText || '',
+                    url: image?.src || '',
+                    caption: caption?.value || ''
+                };
+            }
+
+            validate(savedData) {
+                return !!savedData.url.trim();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeEditor();
+
+            // Re-initialize editor after Livewire updates the DOM
+            Livewire.hook('message.processed', (message, component) => {
+                if (document.getElementById('editorjs')) {
+                    initializeEditor();
+                }
+            });
+        });
+
+        function initializeEditor() {
+            if (window.editor) {
+                window.editor.destroy();
+            }
+
+            window.editor = new EditorJS({
+                autofocus: true,
+                holder: 'editorjs',
+                tools: {
+                    image: SimpleImage,
+                    code: CodeTool,
+                    header: Header,
+                    quote: Quote,
+                    list: {
+                        class: EditorjsList,
+                        inlineToolbar: true,
+                        config: {
+                            defaultStyle: 'unordered',
+                        },
+                    },
                 },
-            };
+                placeholder: 'Let`s write an awesome story!',
+                onChange: async () => {
+                    const content = await window.editor.save();
+                    Livewire.emit('updateEditorContent', content);
+                },
+            });
         }
     </script>
